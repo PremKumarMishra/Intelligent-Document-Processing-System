@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,ConfigDict
 from datetime import datetime
 from uuid import UUID
 
@@ -7,7 +7,6 @@ class DocumentResponse(BaseModel):
     file_name: str
     file_type: str
     created_at: datetime
-    class Config:
-        from_attributes=True # A Very Important Brilliancy (Reads Data From Database/Object instead of python dict)
+    model_config = ConfigDict(from_attributes=True) # A Very Important Brilliancy (Reads Data From Database/Object instead of python dict)
 
     

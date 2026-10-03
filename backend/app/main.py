@@ -5,6 +5,8 @@ from sqlalchemy import text
 from db.session import engine
 from db.models import Base
 from core.config import settings
+from core.exceptions import IDPBaseException,idp_exception_handler,global_unhandled_exception_handler
+from api.v1 import router
 
 async def lifespan(app:FastAPI):
     async with engine.begin() as conn:
@@ -27,6 +29,11 @@ app.add_middleware(
     allow_origins=["*"],
 
 )
+
+app.include_router(router.api_router,prefix=settings.API_V1_STR)
+
+app.add_exception_handler(IDPBaseException,idp_exception_handler)
+app.add_exception_handler(Exception,global_unhandled_exception_handler)
 
 @app.get("/health")
 async def health_check():

@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     VECTOR_DB_DIR: str = "./data/vector_db"
     EMBEDDING_MODEL_NAME: str = "all-MiniLM-L6-v2"
     # LLM Configuration
-    GROQ_BASE_URL = "https://api.groq.com/openai/v1/chat/completions"
+    GROQ_BASE_URL:str = "https://api.groq.com/openai/v1/chat/completions"
     GROQ_API_KEY:str = ""
     DEFAULT_MODEL: str = "llama-3.1-8b-instant"
     model_config = SettingsConfigDict(env_file=ENV_FILE_PATH, case_sensitive=True,extra="ignore",env_file_encoding="utf-8")
