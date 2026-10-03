@@ -9,6 +9,7 @@ from core.exceptions import IDPBaseException,idp_exception_handler,global_unhand
 from api.v1 import router
 
 async def lifespan(app:FastAPI):
+    print(settings.DATABASE_URL)
     async with engine.begin() as conn:
         await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
         await conn.run_sync(Base.metadata.create_all)
