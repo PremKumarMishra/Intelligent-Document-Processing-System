@@ -1,8 +1,8 @@
 from fastapi import status,APIRouter,UploadFile,File,Depends,HTTPException
-from db.session import get_db
+from app.db.session import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
-from schemas.ingest import DocumentResponse
-from services.ingestion_service import process_ingest_pdf
+from app.schemas.ingest import DocumentResponse
+from app.services.ingestion_service import process_ingest_pdf
 
 router = APIRouter()
 

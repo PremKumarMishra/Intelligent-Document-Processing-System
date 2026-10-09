@@ -2,11 +2,11 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
-from db.session import engine
-from db.models import Base
-from core.config import settings
-from core.exceptions import IDPBaseException,idp_exception_handler,global_unhandled_exception_handler
-from api.v1 import router
+from app.db.session import engine
+from app.db.models import Base
+from app.core.config import settings
+from app.core.exceptions import IDPBaseException,idp_exception_handler,global_unhandled_exception_handler
+from app.api.v1 import router
 
 async def lifespan(app:FastAPI):
     print(settings.DATABASE_URL)
