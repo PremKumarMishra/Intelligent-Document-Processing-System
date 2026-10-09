@@ -1,10 +1,10 @@
 from fastapi import APIRouter,status,HTTPException,Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from schemas.extraction import ExtractionRequest,ExtractionResponse
-from core.config import settings
-from db.session import get_db
-from db.models import DocumentChunk
+from app.schemas.extraction import ExtractionRequest,ExtractionResponse
+from app.core.config import settings
+from app.db.session import get_db
+from app.db.models import DocumentChunk
 import time
 import httpx
 import json
@@ -47,7 +47,7 @@ async def extract(payload:ExtractionRequest,db:AsyncSession = Depends(get_db)):
     }
 
     async with httpx.AsyncClient(timeout=45.0) as client:
-        async with client.stream("POST",settings.GROQ_BASE_URL,headers=headers,payload=payload) as response:
+        async with client.stream("POST",settings.GROQ_BASE_URL,headers=headers,json=payload) as response:
             if response.status_code != 200:
                 raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"Extraction provider error: {response.text}")
             raw_content = response.json()["choices"][0]["message"]["content"]

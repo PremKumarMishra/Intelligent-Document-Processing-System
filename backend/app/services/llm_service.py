@@ -1,5 +1,5 @@
 from typing import List,Dict,Any,AsyncGenerator
-from core.config import settings
+from app.core.config import settings
 import httpx
 import json
 
@@ -31,7 +31,7 @@ async def stream_rag_response(query:str,ctx_chunks:List[Dict[str,Any]]) ->AsyncG
     }
 
     async with httpx.AsyncClient(timeout=60.0) as client:
-        async with client.stream("POST",settings.GROQ_BASE_URL,headers=headers,payload=payload) as reponse:
+        async with client.stream("POST",settings.GROQ_BASE_URL,headers=headers,json=payload) as reponse:
             reponse.raise_for_status()
             async for line in reponse.aiter_lines():
                 if line.startswith("data: "):
