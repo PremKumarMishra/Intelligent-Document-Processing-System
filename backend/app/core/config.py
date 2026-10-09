@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     # LLM Configuration
     GROQ_BASE_URL:str = "https://api.groq.com/openai/v1/chat/completions"
     GROQ_API_KEY:str = ""
-    DEFAULT_MODEL: str = "llama-3.1-8b-instant"
+    DEFAULT_MODEL: str = "openai/gpt-oss-20b"
     model_config = SettingsConfigDict(env_file=ENV_FILE_PATH, case_sensitive=True,extra="ignore",env_file_encoding="utf-8")
 
 settings = Settings()
