@@ -1,9 +1,10 @@
 import io
-from db.models import Document,DocumentChunk
+from app.db.models import Document,DocumentChunk
 from pypdf import PdfReader
 from sentence_transformers import SentenceTransformer
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import func
+import uuid
 
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
@@ -25,9 +26,8 @@ async def  process_ingest_pdf(file_name:str,file_bytes:bytes,db:AsyncSession) ->
             chunk = raw_text[start:start+chunk_size]
             if chunk.strip():
                 vector = embedding_model.encode(chunk).tolist()
-                print(vector)
-                print(len(vector))
                 document_chunk = DocumentChunk(
+                    ID = uuid.uuid4(),
                     document_id = document.ID,
                     page_number = page_idx,
                     page_content = chunk,
