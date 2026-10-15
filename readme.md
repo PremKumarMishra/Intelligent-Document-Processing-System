@@ -27,17 +27,28 @@ An end-to-end, production-ready Retrieval-Augmented Generation (RAG) and Intelli
 ## Project Structure
 
 ```text
-├── app/
-│   ├── core/           # Configuration and settings (Pydantic-Settings)
-│   ├── db/             # SQLAlchemy async engine, base, and models (Document, DocumentChunk)
-│   ├── services/       # Business logic (LLM streaming service, PDF ingestion parser)
-│   ├── api/            # API routers (Ingestion, RAG query/stream endpoints)
-│   └── main.py         # FastAPI application entrypoint
-├── data/               # Vector database storage directories / local volumes
-├── Dockerfile          # Multi-stage or standard Python Dockerfile
-├── docker-compose.yml  # Local orchestration for FastAPI & PostgreSQL/pgvector
-├── requirements.txt    # Python dependencies
-└── README.md           # Project documentation
+├── backend
+│   ├── app
+│   │   ├── api
+│   │   │   └── v1
+│   │   │       └── endpoints
+│   │   ├── core
+│   │   ├── db
+│   │   ├── schemas
+│   │   └── services
+│   ├── data
+│   │   ├── uploads
+│   │   └── vector_db
+│   ├── tests
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── requirements.txt
+├── frontend
+│   ├── public
+│   └── src
+│       └── assets
+├── .gitignore
+└── README.md
 ```
 
 ---
