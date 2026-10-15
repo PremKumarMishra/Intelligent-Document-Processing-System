@@ -9,7 +9,7 @@ import uuid
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
 async def  process_ingest_pdf(file_name:str,file_bytes:bytes,db:AsyncSession) -> Document:
-    document = Document(file_name=file_name,file_type="pdf")
+    document = Document(ID=uuid.uuid4(),file_name=file_name,file_type="pdf")
     db.add(document)
     await db.flush()
     reader = PdfReader(io.BytesIO(file_bytes))
