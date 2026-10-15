@@ -445,7 +445,7 @@ export default function App() {
                   type="text" 
                   value={backendUrl}
                   onChange={(e) => setBackendUrl(e.target.value)}
-                  placeholder="http://localhost:8000"
+                  placeholder="https://intelligent-document-processing-system-opq3.onrender.com/"
                   className="flex-1 w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500"
                 />
                 <button 
