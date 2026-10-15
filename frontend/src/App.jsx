@@ -7,7 +7,7 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('portfolio');
-  const [backendUrl, setBackendUrl] = useState('http://localhost:8000');
+  const [backendUrl, setBackendUrl] = useState(import.meta.env.VITE_BACKEND_URL);
   const [isUrlSaved, setIsUrlSaved] = useState(false);
   
   // Chat state
@@ -445,7 +445,7 @@ export default function App() {
                   type="text" 
                   value={backendUrl}
                   onChange={(e) => setBackendUrl(e.target.value)}
-                  placeholder="https://intelligent-document-processing-system-opq3.onrender.com/"
+                  placeholder="https://localhost:8000"
                   className="flex-1 w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500"
                 />
                 <button 
